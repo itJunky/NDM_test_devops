@@ -1,6 +1,6 @@
 ## start
 
-`git remote add origin git@github.com:itJunky/NDM_test_devops.git`
+`docker compose -f ./docker-compose.yml up`
 
 ## check
 
