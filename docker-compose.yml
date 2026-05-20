@@ -1,0 +1,44 @@
+services:
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    networks:
+      - backend
+
+  nginx1:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx1.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - python_app
+    networks:
+      - backend
+
+  nginx2:
+    image: nginx:alpine
+    ports:
+      - "8082:80"
+    volumes:
+      - ./nginx2.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - python_app
+    networks:
+      - backend
+
+  nginx3:
+    image: nginx:alpine
+    ports:
+      - "8083:80"
+    volumes:
+      - ./nginx3.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - python_app
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
